@@ -1,25 +1,36 @@
 #Method 1
 
 import cv2
+import os
 
-# Read the image
-img = cv2.imread('your_image.jpg')
+# Full path to your image
+image_path = "/Users/tejasvinirhombal/Desktop/Cartooning-an-image/image.jpg"
 
-# Apply bilateral filter
-your_image.jpg = cv2.bilateralFilter(img, d=9, sigmaColor=75, sigmaSpace=75)
+# Check file existence
+if not os.path.exists(image_path):
+    raise FileNotFoundError(f"Image not found at: {image_path}")
 
-# Convert to grayscale and apply median blur
-gray = cv2.cvtColor(cartoon_img, cv2.COLOR_BGR2GRAY)
-blurred = cv2.medianBlur(gray, 7)
+img = cv2.imread(image_path)
 
-# Detect edges and create a mask
-edges = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize=9, C=2)
-colored_edges = cv2.bitwise_and(cartoon_img, cartoon_img, mask=edges)
+# Verify image read correctly
+if img is None:
+    raise SystemExit("❌ OpenCV could not open the image. Check file path and extension.")
 
-# Show or save the result
-cv2.imshow('Cartoonized Image', colored_edges)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# Continue your processing
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray = cv2.medianBlur(gray, 5)
+edges = cv2.adaptiveThreshold(gray, 255,
+                              cv2.ADAPTIVE_THRESH_MEAN_C,
+                              cv2.THRESH_BINARY, 9, 9)
+color = cv2.bilateralFilter(img, 9, 250, 250)
+cartoon = cv2.bitwise_and(color, color, mask=edges)
+
+cv2.imwrite("cartoon_output.jpg", cartoon)
+print("✅ Cartoon image saved as cartoon_output.jpg")
+
+# Open the cartoon in Preview (macOS)
+os.system("open cartoon_output.jpg")
+
 
 #Method 2
 
