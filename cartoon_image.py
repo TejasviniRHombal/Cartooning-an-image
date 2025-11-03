@@ -3,7 +3,7 @@
 import cv2
 
 # Read the image
-img = cv2.imread('image.jpg')
+img = cv2.imread('your_image.jpg')
 
 # Apply bilateral filter
 cartoon_img = cv2.bilateralFilter(img, d=9, sigmaColor=75, sigmaSpace=75)
@@ -41,7 +41,7 @@ def color_quantization(img, k):
     return result
 
 # Read the image
-img = cv2.imread('image.jpg')
+img = cv2.imread('your_image.jpg')
 
 # Color quantization
 quantized_img = color_quantization(img, k=9)
@@ -66,8 +66,8 @@ cv2.destroyAllWindows()
 import cv2
 
 # Read and scale down the image
-img = cv2.imread('image.jpg')
-img = cv2.pyrDown(cv2.imread('image.jpg'))
+img = cv2.imread('your_image.jpg')
+img = cv2.pyrDown(cv2.imread('your_image.jpg'))
 
 # Convert to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -94,6 +94,6 @@ cv2.destroyAllWindows()
 import cv2
 
 # Reading, smoothing, and edge detection all in one line
-cv2.imshow('Cartoonized Image', cv2.bitwise_and(cv2.bilateralFilter(cv2.imread('image.jpg'), d=9, sigmaColor=300, sigmaSpace=300), cv2.bilateralFilter(cv2.imread('image.jpg'), d=9, sigmaColor=300, sigmaSpace=300), mask=cv2.Canny(cv2.imread('image.jpg'), 100, 150)))
+cv2.imshow('Cartoonized Image', cv2.bitwise_and(cv2.bilateralFilter(cv2.imread('your_image.jpg'), d=9, sigmaColor=300, sigmaSpace=300), cv2.bilateralFilter(cv2.imread('your_image.jpg'), d=9, sigmaColor=300, sigmaSpace=300), mask=cv2.Canny(cv2.imread('your_image.jpg'), 100, 150)))
 cv2.waitKey(0)
 cv2.destroyAllWindows()
