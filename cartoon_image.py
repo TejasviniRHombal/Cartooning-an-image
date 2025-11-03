@@ -6,7 +6,7 @@ import cv2
 img = cv2.imread('your_image.jpg')
 
 # Apply bilateral filter
-cartoon_img = cv2.bilateralFilter(img, d=9, sigmaColor=75, sigmaSpace=75)
+your_image.jpg = cv2.bilateralFilter(img, d=9, sigmaColor=75, sigmaSpace=75)
 
 # Convert to grayscale and apply median blur
 gray = cv2.cvtColor(cartoon_img, cv2.COLOR_BGR2GRAY)
