@@ -1,4 +1,4 @@
-#Method 1
+#Method 1 :
 
 import cv2
 
